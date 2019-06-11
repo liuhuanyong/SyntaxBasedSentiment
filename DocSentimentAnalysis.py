@@ -17,8 +17,8 @@ class Sentimentor():
         DICT_DIR = os.path.join(CUR_DIR,'dict')
         DescPath = os.path.join(DICT_DIR, 'desc_words.txt')
         SenPath = os.path.join(DICT_DIR, 'sentiment_words.txt')
-        self.DescDict = {i.strip().split('\t')[0]:float(i.strip().split('\t')[1]) for i in open(DescPath) if i.strip()}
-        self.SenDict = {i.strip().split('\t')[0]:float(i.strip().split('\t')[1]) for i in open(SenPath) if i.strip()}
+        self.DescDict = {i.strip().split('\t')[0]:float(i.strip().split('\t')[1]) for i in open(DescPath, encoding='utf-8') if i.strip()}
+        self.SenDict = {i.strip().split('\t')[0]:float(i.strip().split('\t')[1]) for i in open(SenPath, encoding='utf-8') if i.strip()}
         self.SenTree = self.build_actree(list(self.SenDict.keys()))
         self.UserWords = list(set(list(self.DescDict.keys()) + list(self.SenDict.keys())))
         jieba.load_userdict(self.UserWords)
